@@ -1,70 +1,77 @@
 <?php
 
-class Library {
-    public $name;
-    public $books;
-    public function __construct($name = null, array $books = null) {
-        $this->name = $name;
-        if($books != null) {
-            $this->$books = $books;
-        }
-    }
-}
-class Book {
-    public $title;
-    public $author;
-    public $publisher;
-    public $releaseDate;
-    public $isbn;
-    public $price;
-    public function __construct($title = null, $author = null, $publisher = null, $releaseDate = null, $isbn = null, $price = null) {
-        $this->title = $title;
-        $this->author = $author;
-        $this->publisher = $publisher;
-        $this->releaseDate = $releaseDate;
-        $this->isbn = $isbn;
-        $this->price = $price;
-    }
-}
-$n = intval(readline());
-$books = [];
-$library = new Library;
-$library->books = array();
-for($i = 1; $i <= $n; $i++) {
-    $input = explode(" ", readline());
-    $title = $input[0];
-    $author = $input[1];
-    $publisher = $input[2];
-    $releaseDate = $input[3];
-    $isbn = $input[4];
-    $price = $input[5];
+class Student
+{
+    private $name;
+    private $gradesList;
+    private $avg;
 
-    
-    $book = new Book();
-    $book->title = $title;
-    $book->author = $author;
-    $book->publisher = $publisher;
-    $book->releaseDate = $releaseDate;
-    $book->isbn = $isbn;
-    $book->price = $price;
-    $library->books[] = $book;
-}
-$filteredArr = [];
-foreach($library as $values) {
-    if(is_array($values)) {
-        foreach($values as $b) {
-            if(!key_exists($b->author, $filteredArr)) {
-                $filteredArr[$b->author] = 0;
-            }
-            $filteredArr[$b->author] += $b->price;
+    public function __construct($name, $gradesList, $avg)
+    {
+        $this->name = $name;
+        $this->gradesList = $gradesList;
+        $this->avg = $avg;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvg()
+    {
+        return $this->avg;
+    }
+
+    public function __toString()
+    {
+        $formatted = number_format($this->getAvg(), 2);
+        if ($this->getAvg() >= 5) {
+
+
+            return "$this->name -> $formatted" . PHP_EOL;
         }
+        return "";
     }
 }
-foreach($filteredArr as $n => $v) {
-    $name[] = $n;
-    $val[] = $v;
+
+$n = intval(readline());
+$students = [];
+
+for ($i = 0; $i < $n; $i++) {
+    $tokens = explode(" ", readline());
+    $name = $tokens[0];
+    $grades = [];
+    $sum = 0;
+
+    for ($j = 1; $j < count($tokens); $j++) {
+        $grades[] = $tokens[$j];
+        $sum += $tokens[$j];
+    }
+
+    $avg = $sum / count($grades);
+    $student = new Student($name, $grades, $avg);
+    $students[] = $student;
+
 }
-array_multisort($val, SORT_DESC, $name, SORT_ASC, $filteredArr);
-foreach($filteredArr as $author => $price) {
-    printf("%s -> %.2f\n", $author, $price);
+usort($students, function (Student $e1, Student $e2) use ($students) {
+    $name1 = $e1->getName();
+    $name2 = $e2->getName();
+    $avg1 = $e1->getAvg();
+    $avg2 = $e2->getAvg();
+    if ($name1 == $name2) {
+        return $avg2 <=> $avg1;
+    }
+    return $name1 <=> $name2;
+
+
+});
+foreach ($students as $student) {
+    echo $student;
 }
