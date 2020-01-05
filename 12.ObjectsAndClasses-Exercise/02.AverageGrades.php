@@ -3,114 +3,75 @@
 class Student
 {
     private $name;
-    private $listOfGrade;
-    private $average;
+    private $gradesList;
+    private $avg;
 
-    /**
-     * Student constructor.
-     * @param $name
-     * @param $listOfGrade
-     * @param $average
-     */
-    public function __construct($name, $listOfGrade, $average)
+    public function __construct($name, $gradesList, $avg)
     {
-        $this->setName($name);
-        $this->setListOfGrade($listOfGrade);
-        $this->setAverage($average);
+        $this->name = $name;
+        $this->gradesList = $gradesList;
+        $this->avg = $avg;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-
-
     public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
-     */
-    public function setName($name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
      * @return mixed
      */
-    public function getListOfGrade()
+    public function getAvg()
     {
-        return $this->listOfGrade;
-    }
-
-    /**
-     * @param mixed $listOfGrade
-     */
-    public function setListOfGrade($listOfGrade): void
-    {
-        $this->listOfGrade = $listOfGrade;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAverage()
-    {
-        return $this->average;
-    }
-
-    /**
-     * @param mixed $average
-     */
-    public function setAverage($average): void
-    {
-        $this->average = $average;
+        return $this->avg;
     }
 
     public function __toString()
     {
-        if ($this->getAverage() >= 5) {
-            $formatted = number_format($this->getAverage(), 2);
-            return $this->getName() . " -> " . $formatted . PHP_EOL;
+        $formatted = number_format($this->getAvg(), 2);
+        if ($this->getAvg() >= 5) {
+
+
+            return "$this->name -> $formatted" . PHP_EOL;
         }
         return "";
     }
 }
 
-$studentCount = intval(readline());
+$n = intval(readline());
 $students = [];
-for ($i = 0; $i < $studentCount; $i++) {
-    $input = readline();
-    $tokens = explode(" ", $input);
+
+for ($i = 0; $i < $n; $i++) {
+    $tokens = explode(" ", readline());
     $name = $tokens[0];
     $grades = [];
     $sum = 0;
+
     for ($j = 1; $j < count($tokens); $j++) {
         $grades[] = $tokens[$j];
         $sum += $tokens[$j];
     }
-    $average = $sum / count($grades);
-    $student = new Student($name, $grades, $average);
+
+    $avg = $sum / count($grades);
+    $student = new Student($name, $grades, $avg);
     $students[] = $student;
+
 }
-
-usort($students, function (Student $student1, Student $student2)
-use ($students) {
-
-    $name1 = $student1->getName();
-    $name2 = $student2->getName();
-    $average1 = $student1->getAverage();
-    $average2 = $student2->getAverage();
-
+usort($students, function (Student $e1, Student $e2) use ($students) {
+    $name1 = $e1->getName();
+    $name2 = $e2->getName();
+    $avg1 = $e1->getAvg();
+    $avg2 = $e2->getAvg();
     if ($name1 == $name2) {
-        return $average2 <=> $average1;
-
+        return $avg2 <=> $avg1;
     }
     return $name1 <=> $name2;
-});
 
+
+});
 foreach ($students as $student) {
     echo $student;
 }
