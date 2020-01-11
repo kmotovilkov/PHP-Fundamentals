@@ -1,0 +1,126 @@
+Exercise: String and Text Processing
+
+
+1.	Valid Usernames
+Write a program that reads user names on a single line (joined by ", ") and prints all valid usernames.
+A valid username is:
+•	Has length between 3 and 16 characters
+•	Contains only letters, numbers, hyphens and underscores
+•	Has no redundant symbols before, after or in between
+Examples
+Input	Output
+sh, too_long_username, !lleg@l ch@rs, jeffbutt	jeffbutt
+Jeff, john45, ab, cd, peter-ivanov, @smith	Jeff
+john45
+peter-ivanov
+
+
+2.	Character Multiplier
+Create a method that takes two strings as arguments and returns the sum of their character codes multiplied (multiply str1[0] with str2[0] and add to the total sum). Then continue with the next two characters. If one of the strings is longer than the other, add the remaining character codes to the total sum without multiplication.
+Examples
+Input	Output
+Gosho Pesho	53253
+123 522	7647
+a aaaa	9700
+
+
+3.	Extract File
+Write a program that reads the path to a file and subtracts the file name and its extension.
+Examples
+Input	Output
+C:\Internal\training-internal\Template.pptx	File name: Template
+File extension: pptx
+C:\Projects\Data-Structures\LinkedList.cs	File name: LinkedList
+File extension: cs
+
+
+4.	Caesar Cipher
+Write a program that returns an encrypted version of the same text. Encrypt the text by shifting each character with three positions forward. For example A would be replaced by D, B would become E, and so on. Print the encrypted text.
+Examples
+Input	Output
+Programming is cool!	Surjudpplqj#lv#frro$
+One year has 365 days.	Rqh#|hdu#kdv#698#gd|v1
+
+
+5.	Multiply Big Number
+You are given two lines – the first one can be a really big number (0 to 1050). The second one will be a single digit number (0 to 9). You must display the product of these numbers.
+Examples
+Input	Output		Input	Output		Input	Output
+23
+2	46		9999
+9	89991		923847238931983192462832102
+4	3695388955727932769851328408
+
+
+6.	Replace Repeating Chars
+Write a program that reads a string from the console and replaces any sequence of the same letters with a single corresponding letter.
+Examples
+Input	Output
+aaaaabbbbbcdddeeeedssaa	abcdedsa
+qqqwerqwecccwd	qwerqwecwd
+
+
+7.	String Explosion
+Explosions are marked with ‘>’. Immediately after the mark, there will be an integer, which signifies the strength of the explosion.
+You should remove x characters (where x is the strength of the explosion), starting after the punch character (‘>’).
+If you find another explosion mark (‘>’) while you’re deleting characters, you should add the strength to your previous explosion.
+When all characters are processed, print the string without the deleted characters. 
+You should not delete the explosion character – ‘>’, but you should delete the integers, which represent the strength. 
+Input
+You will receive single line with the string.
+Output
+Print what is left from the string after explosions.
+Constraints
+•	You will always receive a strength for the punches
+•	The path will consist only of letters from the Latin alphabet, integers and the char ‘>’
+•	The strength of the punches will be in the interval [0…9]
+Examples
+Input	Output	Comments
+abv>1>1>2>2asdasd	abv>>>>dasd	1st explosion is at index 3 and it is with strength of 1. We delete only the digit after the explosion character. The string will look like this: abv>>1>2>2asdasd
+2nd explosion is with strength one and the string transforms to this: abv>>>2>2asdasd
+3rd explosion is now with strength of 2. We delete the digit and we find another explosion. At this point the string looks like this: abv>>>>2asdasd. 
+4th explosion is with strength 2. We have 1 strength left from the previous explosion, we add the strength of the current explosion to what is left and that adds up to a total strength of 3. We delete the next three characters and we receive the string abv>>>>dasd 
+We do not have any more explosions and we print the result: abv>>>>dasd
+pesho>2sis>1a>2akarate>4hexmaster	pesho>is>a>karate>master	
+
+
+8. SoftUni Bar Income
+Let`s take a break and visit the game bar at SoftUni. It is about time for the people behind the bar to go home and you are the person who has to draw the line and calculate the money from the products that were sold throughout the day. Until you receive a line with text "end of shift" you will be given lines of input. But before processing that line you have to do some validations first.
+Each valid order should have a customer, product, count and a price:
+•	Valid customer's name should be surrounded by '%' and must start with a capital letter, followed by lower-case letters
+•	Valid product contains any word character and must be surrounded by '<' and '>' 
+•	Valid count is an integer, surrounded by '|'
+•	Valid price is any real number followed by '$'
+The parts of a valid order should appear in the order given: customer, product, count and a price.
+Between each part there can be other symbols, except ('|', '$', '%' and '.')
+For each valid line print on the console: "{customerName}: {product} - {totalPrice}"
+When you receive "end of shift" print the total amount of money for the day rounded to 2 decimal places in the following format: "Total income: {income}".
+Input / Constraints
+•	Strings that you have to process until you receive text "end of shift".
+Output
+•	Print all of the valid lines in the format "{customerName}: {product} - {totalPrice}"
+•	After receiving "end of shift" print the total amount of money for the day rounded to 2 decimal places in the following format: "Total income: {income}"
+•	Allowed working time / memory: 100ms / 16MB.
+Examples
+Input	Output	Comment
+%George%<Croissant>|2|10.3$
+%Peter%<Gum>|1|1.3$
+%Maria%<Cola>|1|2.4$
+end of shift	George: Croissant - 20.60
+Peter: Gum - 1.30
+Maria: Cola - 2.40
+Total income: 24.30	Each line is valid, so we print each order, calculating the total price of the product bought.
+At the end we print the total income for the day
+
+%InvalidName%<Croissant>|2|10.3$
+%Peter%<Gum>1.3$
+%Maria%<Cola>|1|2.4
+%Valid%<Valid>valid|10|valid20$
+end of shift	Valid: Valid - 200.00
+Total income: 200.00	On the first line, the customer name isn`t valid, so we skip that line.
+The second line is missing product count.
+The third line don`t have a valid price.
+And only the forth line is valid
+
+
+
