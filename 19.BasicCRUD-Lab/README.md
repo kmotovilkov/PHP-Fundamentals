@@ -1,2 +1,2 @@
 Basic CRUD /
-PHP-MVC-Frameworks-Symfony
+PHP-Frameworks-Symfony
