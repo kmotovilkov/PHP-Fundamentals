@@ -1,2 +1,2 @@
 Basic Calculator /
-PHP-MVC-Frameworks-Symfony
+PHP-Frameworks-Symfony
