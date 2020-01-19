@@ -2394,8 +2394,7 @@
                 "symfony/polyfill-intl-icu": "~1.0",
                 "symfony/polyfill-mbstring": "~1.0",
                 "symfony/polyfill-php56": "~1.0",
-                "symfony/polyfill-php70": "~1.6",
-				"symfony/symfony": "3.4.35",
+                "symfony/polyfill-php70": "~1.6",	
                 "twig/twig": "^1.35|^2.4.4"
             },
             "conflict": {
