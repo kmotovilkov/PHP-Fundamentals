@@ -1,2 +1,2 @@
 Basic Phonebook /
-PHP-MVC-Frameworks-Symfony
+PHP-Frameworks-Symfony
