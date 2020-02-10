@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <h1>Edit Game</h1>
+    <section>
+        <div>
+            <form action="{{ path('edit', { id: game.id }) }}" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" value="{{ game.name }}" name="game[name]"/>
+                <label for="dlc">DLC</label>
+                <input type="text" id="dlc" value="{{ game.dlc }}" name="game[dlc]"/>
+                <label for="price">Price</label>
+                <input type="number" min="0" step="any" id="price" value="{{ game.price }}" name="game[price]"/>
+                <label for="platform">Platform</label>
+                <select name="game[platform]">
+                    <option value="PC" {{ game is defined and game.platform == 'PC' ? 'selected' : '' }}>
+                        PC
+                    </option>
+                    <option value="Mac" {{ game is defined and game.platform == 'Mac' ? 'selected' : '' }}>
+                        Mac
+                    </option>
+                    <option value="PlayStation 4" {{ game is defined and game.platform == 'PlayStation 4' ? 'selected' : '' }}>
+                        PlayStation 4
+                    </option>
+                    <option value="PlayStation 3" {{ game is defined and game.platform == 'PlayStation 3' ? 'selected' : '' }}>
+                        PlayStation 3
+                    </option>
+                </select>
+
+                {{ form_row(form._token) }}
+
+                <button class="button" type="submit">Edit</button>
+                <button class="cancel button" type="button" onclick="location.href='/'">Cancel</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

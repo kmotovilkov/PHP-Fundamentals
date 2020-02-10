@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <h1>Game Store</h1>
+
+    <div>
+        <button class="add-new" onclick="location.href='/create'">Create New Game</button>
+    </div>
+
+    <section>
+        <div>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>DLC</th>
+                    <th>Price</th>
+                    <th>Platform</th>
+                    <th>Actions</th>
+                </tr>
+                {% for game in games %}
+                    <tr>
+                        <td>{{ game.name }}</td>
+                        <td>{{ game.dlc }}</td>
+                        <td>{{ game.price }} $</td>
+                        <td>{{ game.platform }}</td>
+                        <td>
+                            <button onclick="location.href='/edit/{{ game.id }}'" class="edit">Edit</button>
+                            <button onclick="location.href='/delete/{{ game.id }}'" class="delete">Delete</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}

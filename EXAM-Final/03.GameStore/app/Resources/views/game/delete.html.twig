@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <h1>Delete Game</h1>
+    <section>
+        <div>
+            <form action="{{ path('delete', { id: game.id }) }}" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" value="{{ game.name }}" name="game[name]" disabled/>
+                <label for="dlc">DLC</label>
+                <input type="text" id="dlc" value="{{ game.dlc }}" name="game[dlc]" disabled/>
+                <label for="price">Price</label>
+                <input type="number" min="0" step="any" id="price" value="{{ game.price }}" name="game[price]"
+                       disabled/>
+                <label for="platform">Platform</label>
+                <input type="text" id="platform" value="{{ game.platform }}" name="game[platform]" disabled/>
+
+                {{ form_row(form._token) }}
+
+                <button class="button" type="submit">Delete</button>
+                <button class="button cancel" type="button" onclick="location.href='/'">Cancel</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

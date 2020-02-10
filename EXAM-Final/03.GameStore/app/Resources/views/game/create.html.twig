@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+    <h1>Create Game</h1>
+    <section>
+        <div>
+            <form action="{{ path('create') }}" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="game[name]"/>
+                <label for="dlc">DLC</label>
+                <input type="text" id="dlc" name="game[dlc]"/>
+                <label for="price">Price</label>
+                <input type="number" min="0" step="any" id="price" name="game[price]"/>
+                <label for="platform">Platform</label>
+                <select name="game[platform]">
+                    <option id="platform" value="PC">PC</option>
+                    <option id="platform" value="Mac">Mac</option>
+                    <option id="platform" value="PlayStation 4">PlayStation 4</option>
+                    <option id="platform" value="PlayStation 3">PlayStation 3</option>
+                </select>
+
+                {{ form_row(form._token) }}
+
+                <button class="button" type="submit">Create</button>
+                <button class="button cancel" type="button" onclick="location.href='/'">Cancel</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
