@@ -34,7 +34,7 @@ if ($groupType === "Business" && $num >= 100) {
 } else if ($groupType === "Students" && $num >= 30) {
     $totalPrice = $sumPrice - ($sumPrice * 0.15);
 } else if ($groupType === "Regular" && $num >= 10 && $num <= 20) {
-    $totalPrice = $sumPrice - ($sumPrice * 0.5);
+    $totalPrice = $sumPrice - ($sumPrice * 0.05);
 } else {
     $totalPrice = $sumPrice;
 }
